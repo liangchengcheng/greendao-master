@@ -22,6 +22,7 @@ import fwq.hdsx.com.lccdemo.UsersDao;
  */
 public class DaoSession extends AbstractDaoSession {
 
+
     private final DaoConfig usersDaoConfig;
 
     private final UsersDao usersDao;
