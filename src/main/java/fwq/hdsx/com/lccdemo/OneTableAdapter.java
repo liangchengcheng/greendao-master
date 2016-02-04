@@ -61,5 +61,5 @@ public class OneTableAdapter extends BaseAdapter{
         TextView uAge;
         TextView uTel;
     }
-    
+
 }
