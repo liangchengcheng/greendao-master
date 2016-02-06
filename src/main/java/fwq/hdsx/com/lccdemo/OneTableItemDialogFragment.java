@@ -19,7 +19,7 @@ public class OneTableItemDialogFragment extends DialogFragment{
     /**
      * 在list中的编号
      */
-    private int position;
+    private int postion;
 
     private TextView txt_onetable_update;
     private TextView txt_onetable_delete;
@@ -27,6 +27,11 @@ public class OneTableItemDialogFragment extends DialogFragment{
     public interface EditUserOnClickListener{
         //flag标识 0标识的是删除，1标识的是修改
         void onEditUserOnClick(long id,int position,int flag);
+    }
+
+    public OneTableItemDialogFragment(long id,int postion) {
+        this.id = id;
+        this.postion = postion;
     }
 
     @Nullable
@@ -48,7 +53,7 @@ public class OneTableItemDialogFragment extends DialogFragment{
             @Override
             public void onClick(View v) {
                 EditUserOnClickListener listener= (EditUserOnClickListener) getActivity();
-                listener.onEditUserOnClick(id,position,1);
+                listener.onEditUserOnClick(id,postion,1);
             }
         });
 
@@ -56,7 +61,7 @@ public class OneTableItemDialogFragment extends DialogFragment{
             @Override
             public void onClick(View v) {
                 EditUserOnClickListener listener= (EditUserOnClickListener) getActivity();
-                listener.onEditUserOnClick(id,position,0);
+                listener.onEditUserOnClick(id,postion,0);
             }
         });
 
