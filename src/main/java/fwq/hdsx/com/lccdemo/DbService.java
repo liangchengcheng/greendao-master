@@ -14,6 +14,8 @@ public class DbService {
     private static Context appContext;
     private DaoSession mDaosession;
     private UsersDao usersDao;
+    private infosDao infoDao;
+    private infoTypeDao typeDao;
 
     private DbService(){}
 
@@ -25,6 +27,8 @@ public class DbService {
             }
             instance.mDaosession=MyApplication.getDaoSession(context);
             instance.usersDao=instance.mDaosession.getUsersDao();
+            instance.infoDao=instance.mDaosession.getInfosDao();
+            instance.typeDao=instance.mDaosession.getInfoTypeDao();
         }
         return instance;
     }
@@ -112,5 +116,37 @@ public class DbService {
         usersDao.delete(user);
     }
 
+    public Long saveInfoType(infoType iType){
+        return typeDao.insertOrReplace(iType);
+    }
+
+    public void deleteInfoType(long id){
+        typeDao.load(id).delete();
+    }
+
+    public List<infoType> getAllInfoTypeList(){
+        return typeDao.queryBuilder().orderDesc(infoTypeDao.Properties.Id).list();
+    }
+
+    public  infoType getInfoType(long id){
+        return typeDao.load(id);
+    }
+
+    public List<infos> getInfoByTypeId(long typeid){
+        return typeDao.load(typeid).getInfoes();
+    }
+
+    public long saveInfo(infos info){
+        return infoDao.insertOrReplace(info);
+    }
+
+    public List<infos> getAllInfos(){
+        return infoDao.loadAll();
+    }
+
+    public List<infos> getInfosBypageSize(long typeid,int pageNum,int pageSize){
+        return infoDao.queryBuilder().where(infosDao.Properties.TypeId.eq(typeid))
+                .offset(1).limit(pageSize).list();
+    }
 
 }

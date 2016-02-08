@@ -52,7 +52,7 @@ public class OneTableAdapter extends BaseAdapter{
         uInfo.uTel.setText(list_user.get(position).getUTelphone());
         uInfo.uName.setText(list_user.get(position).getUName());
         uInfo.uAge.setText(list_user.get(position).getUAge());
-        return null;
+        return convertView;
     }
 
     public class userInfo{
