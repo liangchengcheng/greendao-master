@@ -24,7 +24,7 @@ public class MyApplication  extends Application{
      */
     public static DaoMaster getDaoMaster(Context context){
         if (daoMaster == null) {
-            DaoMaster.OpenHelper helper = new THDevOpenHelper(context,"myDb",null);
+            DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context,"myDb",null);
             daoMaster = new DaoMaster(helper.getWritableDatabase());
         }
         return daoMaster;
